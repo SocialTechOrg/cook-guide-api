@@ -1,36 +1,82 @@
-﻿using CookGuide.API.Accounts.Domain.Services;
+﻿using CookGuide.API.Accounts.Domain.Repositories;
+using CookGuide.API.Accounts.Domain.Services;
+using CookGuide.API.Accounts.Domain.Services.Communication;
+using CookGuide.API.Shared.Domain.Repositories;
 
 namespace CookGuide.API.Accounts.Services;
 
 using CookGuide.API.Accounts.Domain.Models;
 
-public class AccountsService: IAccountsService
+public class AccountsService : IAccountsService
 {
-    public AccountsService()
+    private readonly IAccountsRepository accountRepository;
+    private readonly IUnitOfWork unitOfWork;
+
+    public AccountsService(IAccountsRepository accountRepository, IUnitOfWork unitOfWork)
     {
-    }
-    public Task<IEnumerable<Accounts>> ListAsync()
-    {
-        throw new NotImplementedException();
+        this.accountRepository = accountRepository;
+        this.unitOfWork = unitOfWork;
     }
 
-    public Task<Accounts> FindByIdAsync(int id)
+    public async Task<IEnumerable<Accounts>> ListAsync()
     {
-        throw new NotImplementedException();
+        return await accountRepository.ListAsync();
     }
 
-    public Task AddAsync(Accounts account)
+    public async Task<AccountsApiResponse> AddAsync(Accounts account)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await accountRepository.AddAsync(account);
+            await unitOfWork.CompleteAsync();
+            return new AccountsApiResponse(account);
+
+        }
+        catch (Exception e)
+        {
+            return new AccountsApiResponse($"An error occurred while saving the account: {e.Message}");
+        }
     }
 
-    public void Update(Accounts account)
+    public async Task<AccountsApiResponse> UpdateAsync(int id, Accounts account)
     {
-        throw new NotImplementedException();
+
+        var updateAccount = await accountRepository.FindByIdAsync(id);
+        if (updateAccount == null)
+            return new AccountsApiResponse("Account not found.");
+
+        updateAccount.firstName = account.firstName ?? updateAccount.firstName;
+        updateAccount.lastName = account.lastName ?? updateAccount.lastName;
+        updateAccount.recipes = account.recipes ?? updateAccount.recipes;
+
+        try
+        {
+            accountRepository.Update(updateAccount);
+            await unitOfWork.CompleteAsync();
+            return new AccountsApiResponse(updateAccount);
+        }
+        catch (Exception e)
+        {
+            return new AccountsApiResponse($"An error occurred while updating the user: {e.Message}");
+        }
     }
 
-    public void Delete(Accounts account)
+    public async Task<AccountsApiResponse> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var deleteAccount = await accountRepository.FindByIdAsync(id);
+        if (deleteAccount == null)
+            return new AccountsApiResponse("Account not found.");
+
+        try
+        {
+            accountRepository.Remove(deleteAccount);
+            await unitOfWork.CompleteAsync();
+            return new AccountsApiResponse(deleteAccount);
+        }
+        catch (Exception e)
+        {
+            return new AccountsApiResponse($"An error occurred while deleting the user: {e.Message}");
+        }
+
     }
 }
