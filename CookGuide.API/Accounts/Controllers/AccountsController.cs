@@ -35,7 +35,7 @@ public class AccountsController
     [HttpPost]
     public async Task<IActionResult> PostAsync([FromBody] AccountsSigninRequest request)
     {
-        if (!ModelState.IsValid)
+        if (!ModelState.IsValid) 
             return BadRequest(ModelState.GetErrorMessages());
         
         var account = mapper.Map<AccountsSigninRequest, Accounts>(request);
@@ -45,6 +45,38 @@ public class AccountsController
             return BadRequest(response.Message);
         
         var accountResponse = mapper.Map<Accounts, AccountsSigninResponse>(response.Account);
+        return Ok(accountResponse);
+    }
+    
+    //PUT: api/v1/accounts/{id}
+    //Actualizar un usuario
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutAsync(int id, [FromBody] AccountsUpdateRequest request)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState.GetErrorMessages());
+        
+        var account = mapper.Map<AccountsUpdateRequest, Accounts>(request);
+        var response = await accountsService.UpdateAsync(id, account);
+        
+        if (!response.Success)
+            return BadRequest(response.Message);
+        
+        var accountResponse = mapper.Map<Accounts, AccountsUpdateResponse>(response.Account);
+        return Ok(accountResponse);
+    }
+    
+    //DELETE: api/v1/accounts/{id}
+    //Eliminar un usuario
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteAsync(int id)
+    {
+        var response = await accountsService.DeleteAsync(id);
+        
+        if (!response.Success)
+            return BadRequest(response.Message);
+        
+        var accountResponse = mapper.Map<Accounts, AccountsDeleteResponse>(response.Account);
         return Ok(accountResponse);
     }
 }
