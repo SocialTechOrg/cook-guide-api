@@ -48,6 +48,11 @@ public class AccountsService : IAccountsService
         updateAccount.firstName = account.firstName ?? updateAccount.firstName;
         updateAccount.lastName = account.lastName ?? updateAccount.lastName;
         updateAccount.recipes = account.recipes ?? updateAccount.recipes;
+        updateAccount.email = account.email ?? updateAccount.email;
+        updateAccount.phone = account.phone ?? updateAccount.phone;
+        updateAccount.address = account.address ?? updateAccount.address;
+        updateAccount.username = account.username ?? updateAccount.username;
+        updateAccount.password = account.password ?? updateAccount.password;
 
         try
         {
