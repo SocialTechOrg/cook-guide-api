@@ -22,7 +22,12 @@ namespace CookGuide.API.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     first_name = table.Column<string>(type: "longtext", nullable: false),
                     last_name = table.Column<string>(type: "longtext", nullable: false),
-                    user_type = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                    user_type = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    username = table.Column<string>(type: "longtext", nullable: false),
+                    password = table.Column<string>(type: "longtext", nullable: false),
+                    email = table.Column<string>(type: "longtext", nullable: false),
+                    phone = table.Column<string>(type: "longtext", nullable: false),
+                    address = table.Column<string>(type: "longtext", nullable: false)
                 },
                 constraints: table =>
                 {
