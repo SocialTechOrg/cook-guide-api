@@ -18,6 +18,7 @@ public class AccountsSigninRequest
     [MaxLength(30)]
     public string? lastName { get; set; }
     
+    [Required]
     [MaxLength(50)]
     public string? email { get; set; }
     
