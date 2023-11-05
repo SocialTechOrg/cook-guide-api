@@ -1,4 +1,10 @@
+using CookGuide.API.Accounts.Domain.Repositories;
+using CookGuide.API.Accounts.Domain.Services;
+using CookGuide.API.Accounts.Mapping;
+using CookGuide.API.Accounts.Services;
+using CookGuide.API.Shared.Domain.Repositories;
 using CookGuide.API.Shared.Persistence.Contexts;
+using CookGuide.API.Shared.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +25,17 @@ builder.Services.AddDbContext<AppDbContext>(
         .EnableDetailedErrors()
 );
 
+builder.Services.AddScoped<IAccountsService, AccountsService>();
+builder.Services.AddScoped<IAccountsRepository, AccountsRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+ 
+
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
+builder.Services.AddAutoMapper(
+    typeof(ModelToResourceProfile), 
+    typeof(ResourceToModelProfile)
+);
 
 var app = builder.Build();
 

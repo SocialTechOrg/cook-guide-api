@@ -23,7 +23,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Accounts\Mapping\" />
       <Folder Include="Ingredients\Controllers\" />
       <Folder Include="Ingredients\Domain\Services\" />
       <Folder Include="Ingredients\Dto\" />
@@ -34,7 +33,6 @@
       <Folder Include="Recipes\Dto\" />
       <Folder Include="Recipes\Mapping\" />
       <Folder Include="Recipes\Services\" />
-      <Folder Include="Shared\Extensions\" />
     </ItemGroup>
 
 </Project>

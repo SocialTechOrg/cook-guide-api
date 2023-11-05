@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using CookGuide.API.Accounts.Domain.Services;
 using CookGuide.API.Accounts.Dto.Response;
 using CookGuide.API.Accounts.Dto.Request;
+using Microsoft.AspNetCore.Http.HttpResults;
+using CookGuide.API.Shared.Extensions;
 
 namespace CookGuide.API.Accounts.Controllers;
 
@@ -10,7 +12,7 @@ using CookGuide.API.Accounts.Domain.Models;
 
 [ApiController]
 [Route("api/v1/[controller]")]
-public class AccountsController
+public class AccountsController: ControllerBase
 {
     private readonly IAccountsService accountsService;
     private readonly IMapper mapper;
@@ -44,7 +46,7 @@ public class AccountsController
         if (!response.Success)
             return BadRequest(response.Message);
         
-        var accountResponse = mapper.Map<Accounts, AccountsSigninResponse>(response.Account);
+        var accountResponse = mapper.Map<Accounts, AccountsSigninResponse>(response.Resource);
         return Ok(accountResponse);
     }
     
@@ -62,7 +64,7 @@ public class AccountsController
         if (!response.Success)
             return BadRequest(response.Message);
         
-        var accountResponse = mapper.Map<Accounts, AccountsUpdateResponse>(response.Account);
+        var accountResponse = mapper.Map<Accounts, AccountsUpdateResponse>(response.Resource);
         return Ok(accountResponse);
     }
     
@@ -76,7 +78,7 @@ public class AccountsController
         if (!response.Success)
             return BadRequest(response.Message);
         
-        var accountResponse = mapper.Map<Accounts, AccountsDeleteResponse>(response.Account);
+        var accountResponse = mapper.Map<Accounts, AccountsDeleteResponse>(response.Resource);
         return Ok(accountResponse);
     }
 }

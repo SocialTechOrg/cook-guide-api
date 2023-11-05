@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CookGuide.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231103052230_Initial")]
+    [Migration("20231105031556_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -28,6 +28,16 @@ namespace CookGuide.API.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
+                    b.Property<string>("address")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("address");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("email");
+
                     b.Property<string>("firstName")
                         .IsRequired()
                         .HasColumnType("longtext")
@@ -38,9 +48,24 @@ namespace CookGuide.API.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("last_name");
 
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("password");
+
+                    b.Property<string>("phone")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("phone");
+
                     b.Property<bool>("userType")
                         .HasColumnType("tinyint(1)")
                         .HasColumnName("user_type");
+
+                    b.Property<string>("username")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("username");
 
                     b.HasKey("id")
                         .HasName("pk_accounts");
