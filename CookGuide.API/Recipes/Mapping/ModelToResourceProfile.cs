@@ -12,8 +12,11 @@ public class ModelToResourceProfile: Profile
 
         CreateMap<Domain.Models.Recipes, RecipeAddResponse>()
             .ForMember(dest => dest.recipeId, opt => opt.MapFrom(src => src.id))
+            .ForMember(dest => dest.name, opt => opt.MapFrom(src => src.name))
             .ForMember(dest => dest.description, opt => opt.MapFrom(src => src.description))
             .ForMember(dest => dest.num_portions, opt => opt.MapFrom(src => src.num_portions))
+            .ForMember(dest => dest.category, opt => opt.MapFrom(src => src.category))
+            .ForMember(dest => dest.accountId, opt => opt.MapFrom(src => src.accountId))
             .ForMember(dest => dest.ingredients, opt => opt.MapFrom(src => src.ingredients));
         
         CreateMap<Domain.Models.Recipes, Dto.Response.RecipeDeleteResponse>();
