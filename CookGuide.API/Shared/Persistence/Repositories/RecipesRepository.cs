@@ -12,12 +12,16 @@ public class RecipesRepository: BaseRepository, IRecipesRepository
 
     public async Task<IEnumerable<Recipes.Domain.Models.Recipes>> ListAsync()
     {
-        return await context.Recipes.ToListAsync();
+        return await context.Recipes
+            .Include(r => r.ingredients) // Cargar ingredientes
+            .ToListAsync();
     }
 
     public async Task<Recipes.Domain.Models.Recipes> FindByIdAsync(int id)
     {
-        return await context.Recipes.FindAsync(id);
+        return await context.Recipes
+            .Include(r => r.ingredients) // Cargar ingredientes
+            .FirstOrDefaultAsync(r => r.id == id);
     }
 
     public async Task AddAsync(Recipes.Domain.Models.Recipes recipe)
