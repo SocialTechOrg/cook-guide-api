@@ -34,7 +34,7 @@ public class AccountsService : IAccountsService
         }
         catch (Exception e)
         {
-            return new AccountsApiResponse($"An error occurred while saving the account: {e.Message}");
+            return new AccountsApiResponse($"An error occurred while saving the Accounts: {e.Message}");
         }
     }
 

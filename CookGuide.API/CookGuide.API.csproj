@@ -22,17 +22,4 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Ingredients\Controllers\" />
-      <Folder Include="Ingredients\Domain\Services\" />
-      <Folder Include="Ingredients\Dto\" />
-      <Folder Include="Ingredients\Mapping\" />
-      <Folder Include="Ingredients\Services\" />
-      <Folder Include="Recipes\Controllers\" />
-      <Folder Include="Recipes\Domain\Services\" />
-      <Folder Include="Recipes\Dto\" />
-      <Folder Include="Recipes\Mapping\" />
-      <Folder Include="Recipes\Services\" />
-    </ItemGroup>
-
 </Project>
