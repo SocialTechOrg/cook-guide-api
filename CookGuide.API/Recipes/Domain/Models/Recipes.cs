@@ -9,6 +9,8 @@ public class Recipes
     public string name { get; set; }
     public string description { get; set; }
     
+    public string photoUrl { get; set; }
+    
     public IList<RecipesIngredients> ingredients { get; set; } = new List<RecipesIngredients>();
     
     public int accountId { get; set; }

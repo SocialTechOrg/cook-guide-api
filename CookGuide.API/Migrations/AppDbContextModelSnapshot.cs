@@ -121,9 +121,19 @@ namespace CookGuide.API.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("description");
 
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("name");
+
                     b.Property<int?>("num_portions")
                         .HasColumnType("int")
                         .HasColumnName("num_portions");
+
+                    b.Property<string>("photoUrl")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("photo_url");
 
                     b.HasKey("id")
                         .HasName("pk_recipes");

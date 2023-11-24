@@ -6,6 +6,7 @@ public class RecipeAddRequest
     public int num_portions { get; set; }
     public string name { get; set; }
     public string description { get; set; }
+    public string photoUrl { get; set; }
     public int accountId { get; set; }
     public List<IngredientRecipeRequest> ingredients { get; set; }
     
