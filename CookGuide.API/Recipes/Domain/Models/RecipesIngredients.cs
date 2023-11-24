@@ -6,9 +6,13 @@ using CookGuide.API.Ingredients.Domain.Models;
 
 public class RecipesIngredients
 {
-    public int recipeId { get; set; }
-    public Recipes recipe { get; set; }
-    
-    public int ingredientId { get; set; }
-    public Ingredients ingredient { get; set; }
+    public int RecipeId { get; set; }
+    public Recipes Recipe { get; set; }
+
+    public int IngredientId { get; set; }
+    public Ingredients Ingredient { get; set; }
+
+    public int Quantity { get; set; }
+
+    public string Measurement { get; set; }
 }
