@@ -33,6 +33,20 @@ public class IngredientsController: ControllerBase
         return mapper.Map<IEnumerable<Ingredients>, IEnumerable<IngredientsAddResponse>>(ingredients); 
     }
     
+    //GET: api/v1/ingredients/{id}
+    //Obtener un ingrediente por id
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetAsync(int id)
+    {
+        var response = await ingredientsService.FindByIdAsync(id);
+        
+        if (response == null)
+            return BadRequest(response.Message);
+        
+        var ingredientResponse = mapper.Map<Ingredients, IngredientsAddResponse>(response.Resource);
+        return Ok(ingredientResponse);
+    }
+    
     // POST: api/v1/ingredients
     // Crear un nuevo ingrediente
     [HttpPost]
