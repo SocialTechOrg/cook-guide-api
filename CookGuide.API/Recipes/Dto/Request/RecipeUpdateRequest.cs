@@ -1,0 +1,9 @@
+﻿namespace CookGuide.API.Recipes.Dto.Request;
+
+public class RecipeUpdateRequest
+{
+    public string category { get; set; }
+    public int num_portions { get; set; }
+    public string description { get; set; }
+    public List<IngredientRecipeRequest> ingredients { get; set; }
+}
