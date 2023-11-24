@@ -76,4 +76,11 @@ public class IngredientsService: IIngredientsService
         }
     }
     
+    public async Task<IngredientsApiResponse> FindByIdAsync(int id)
+    {
+        var updateIngredient = await ingredientsRepository.FindByIdAsync(id);
+        if (updateIngredient == null)
+            return new IngredientsApiResponse("Ingredient not found.");
+        return new IngredientsApiResponse(updateIngredient);
+    }
 }
