@@ -22,18 +22,26 @@ public class AppDbContext: DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Recipes>()
+            .HasKey(r => r.id);
+        
         modelBuilder.Entity<RecipesIngredients>()
-            .HasKey(ri => new { ri.recipeId, ri.ingredientId });
+            .HasKey(ri => new { ri.RecipeId, ri.IngredientId });
 
         modelBuilder.Entity<RecipesIngredients>()
-            .HasOne(ri => ri.recipe)
+            .HasOne(ri => ri.Recipe)
             .WithMany(r => r.ingredients)
-            .HasForeignKey(ri => ri.recipeId);
+            .HasForeignKey(ri => ri.RecipeId);
 
         modelBuilder.Entity<RecipesIngredients>()
-            .HasOne(ri => ri.ingredient)
+            .HasOne(ri => ri.Ingredient)
             .WithMany(i => i.recipes)
-            .HasForeignKey(ri => ri.ingredientId);
+            .HasForeignKey(ri => ri.IngredientId);
+
+        modelBuilder.Entity<Recipes>()
+            .HasOne(r => r.account)
+            .WithMany(a => a.recipes)
+            .HasForeignKey(r => r.accountId);
     }
 }
 
