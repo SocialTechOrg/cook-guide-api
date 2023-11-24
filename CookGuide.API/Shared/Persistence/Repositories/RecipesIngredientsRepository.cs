@@ -20,6 +20,13 @@ public class RecipesIngredientsRepository: BaseRepository, IRecipesIngredientsRe
         return await context.RecipesIngredients.FindAsync(id);
     }
 
+    public async Task<IEnumerable<RecipesIngredients>> FindByRecipeIdAsync(int recipeId)
+    {
+        return await context.RecipesIngredients
+            .Where(p => p.RecipeId == recipeId)
+            .ToListAsync();
+    }
+    
     public async Task AddAsync(RecipesIngredients recipeIngredient)
     {
         await context.RecipesIngredients.AddAsync(recipeIngredient);
