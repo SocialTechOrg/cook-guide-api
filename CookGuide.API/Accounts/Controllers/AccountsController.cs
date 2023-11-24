@@ -34,7 +34,7 @@ public class AccountsController: ControllerBase
     
     //POST: api/v1/accounts
     //Crear un nuevo usuario
-    [HttpPost]
+    [HttpPost("sign-in")]
     public async Task<IActionResult> PostAsync([FromBody] AccountsSigninRequest request)
     {
         if (!ModelState.IsValid) 
@@ -47,6 +47,24 @@ public class AccountsController: ControllerBase
             return BadRequest(response.Message);
         
         var accountResponse = mapper.Map<Accounts, AccountsSigninResponse>(response.Resource);
+        return Ok(accountResponse);
+    }
+    
+    //POST: api/v1/accounts/signin
+    //Iniciar sesión
+    [HttpPost("log-in")]
+    public async Task<IActionResult> LogInAsync([FromBody] AccountsLogInRequest request)
+    {
+        if (!ModelState.IsValid) 
+            return BadRequest(ModelState.GetErrorMessages());
+        
+        var account = mapper.Map<AccountsLogInRequest, Accounts>(request);
+        var response = await accountsService.LoginAsync(account);
+        
+        if (!response.Success)
+            return BadRequest(response.Message);
+        
+        var accountResponse = mapper.Map<Accounts, AccountsLogInResponse>(response.Resource);
         return Ok(accountResponse);
     }
     

@@ -14,5 +14,6 @@ public class ResourceToModelProfile: Profile
         CreateMap<AccountsUpdateRequest, Accounts>();
         CreateMap<AccountsSigninRequest, Accounts>();
         CreateMap<AccountsDeleteResponse, Accounts>();   
+        CreateMap<AccountsLogInRequest, Accounts>();
     }
 }

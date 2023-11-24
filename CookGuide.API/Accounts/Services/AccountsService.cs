@@ -37,6 +37,28 @@ public class AccountsService : IAccountsService
             return new AccountsApiResponse($"An error occurred while saving the Accounts: {e.Message}");
         }
     }
+    
+    public async Task<AccountsApiResponse> LoginAsync(Accounts account)
+    {
+        
+        var verify_account = await accountRepository.FindByEmailAsync(account.email);
+        if (verify_account == null)
+            return new AccountsApiResponse("Account not found.");
+        
+        if(verify_account.password != account.password)
+            return new AccountsApiResponse("Incorrect password.");
+        
+        try
+        {
+            await unitOfWork.CompleteAsync();
+            return new AccountsApiResponse(verify_account);
+
+        }
+        catch (Exception e)
+        {
+            return new AccountsApiResponse($"An error occurred while saving the Accounts: {e.Message}");
+        }
+    }
 
     public async Task<AccountsApiResponse> UpdateAsync(int id, Accounts account)
     {

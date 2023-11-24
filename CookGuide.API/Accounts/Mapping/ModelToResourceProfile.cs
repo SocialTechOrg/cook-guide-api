@@ -13,6 +13,7 @@ public class ModelToResourceProfile: Profile
         CreateMap<Accounts, AccountsUpdateResponse>();
         CreateMap<Accounts, AccountsSigninResponse>();
         CreateMap<Accounts, AccountsDeleteResponse>();
+        CreateMap<Accounts, AccountsLogInResponse>();
     }
     
 }
