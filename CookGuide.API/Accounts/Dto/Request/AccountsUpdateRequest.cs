@@ -25,4 +25,6 @@ public class AccountsUpdateRequest
     
     [MaxLength(100)]
     public string? address { get; set; }
+    
+    public string? profilePicture { get; set; }
 }

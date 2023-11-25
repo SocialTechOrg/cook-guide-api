@@ -38,6 +38,13 @@ public class AccountsService : IAccountsService
         }
     }
     
+    public async Task<AccountsApiResponse> FindByIdAsync(int id)
+    {
+        var account = await accountRepository.FindByIdAsync(id);
+        if (account == null)
+            return new AccountsApiResponse("Account not found.");
+        return new AccountsApiResponse(account);
+    }
     public async Task<AccountsApiResponse> LoginAsync(Accounts account)
     {
         

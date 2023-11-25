@@ -28,4 +28,8 @@ public class AccountsSigninRequest
     [MaxLength(100)]
     public string? address { get; set; }
     
+    public string? profilePicture { get; set; }
+    
+    public bool? userType { get; set; }
+    
 }

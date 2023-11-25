@@ -10,7 +10,7 @@ using CookGuide.API.Recipes.Dto.Request;
 using CookGuide.API.Recipes.Dto.Response;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/v1/[controller]")]
 public class RecipesController: ControllerBase
 {
     private readonly IRecipesService recipesService;

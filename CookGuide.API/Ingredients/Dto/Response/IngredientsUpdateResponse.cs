@@ -2,6 +2,7 @@
 
 public class IngredientsUpdateResponse
 {
+    public int id {get; set; }
     public string name { get; set; }
     public string other_names { get; set; }
     public string nutrients { get; set; }

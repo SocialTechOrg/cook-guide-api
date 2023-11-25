@@ -5,6 +5,7 @@ public class RecipeUpdateRequest
     public string category { get; set; }
     public int num_portions { get; set; }
     public string name { get; set; }
+    public int preparationTime {get; set;}
     public string description { get; set; }
     public List<IngredientRecipeRequest> ingredients { get; set; }
 }

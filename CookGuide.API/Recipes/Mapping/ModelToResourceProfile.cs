@@ -14,6 +14,7 @@ public class ModelToResourceProfile: Profile
             .ForMember(dest => dest.recipeId, opt => opt.MapFrom(src => src.id))
             .ForMember(dest => dest.name, opt => opt.MapFrom(src => src.name))
             .ForMember(dest => dest.description, opt => opt.MapFrom(src => src.description))
+            .ForMember(dest => dest.preparationTime, opt => opt.MapFrom(src => src.preparationTime))
             .ForMember(dest => dest.photoUrl, opt => opt.MapFrom(src => src.photoUrl))
             .ForMember(dest => dest.num_portions, opt => opt.MapFrom(src => src.num_portions))
             .ForMember(dest => dest.category, opt => opt.MapFrom(src => src.category))

@@ -17,7 +17,7 @@ using ModelToResourceProfileIngredients = CookGuide.API.Ingredients.Mapping.Mode
 using ResourceToModelProfileIngredients  = CookGuide.API.Ingredients.Mapping.ResourceToModelProfile;
 using ModelToResourceProfileRecipes = CookGuide.API.Recipes.Mapping.ModelToResourceProfile;
 using ResourceToModelProfileRecipes  = CookGuide.API.Recipes.Mapping.ResourceToModelProfile;
-
+using Microsoft.AspNetCore.Cors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +36,15 @@ builder.Services.AddDbContext<AppDbContext>(
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()
 );
+
+// CORS Configuration
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://localhost:5173")
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
 
 builder.Services.AddScoped<IAccountsService, AccountsService>();
 builder.Services.AddScoped<IAccountsRepository, AccountsRepository>();
@@ -79,6 +88,8 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 

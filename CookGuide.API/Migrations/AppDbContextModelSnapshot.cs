@@ -52,6 +52,10 @@ namespace CookGuide.API.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("phone");
 
+                    b.Property<string>("profilePicture")
+                        .HasColumnType("longtext")
+                        .HasColumnName("profile_picture");
+
                     b.Property<bool?>("userType")
                         .HasColumnType("tinyint(1)")
                         .HasColumnName("user_type");
@@ -134,6 +138,10 @@ namespace CookGuide.API.Migrations
                         .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("photo_url");
+
+                    b.Property<int>("preparationTime")
+                        .HasColumnType("int")
+                        .HasColumnName("preparation_time");
 
                     b.HasKey("id")
                         .HasName("pk_recipes");

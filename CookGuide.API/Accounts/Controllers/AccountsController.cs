@@ -32,6 +32,20 @@ public class AccountsController: ControllerBase
         return mapper.Map<IEnumerable<Accounts>, IEnumerable<AccountsSigninResponse>>(accounts); 
     }
     
+    // GET: api/v1/accounts/{id}
+    //Obtener un usuario por su id
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetAsync(int id)
+    {
+        var response = await accountsService.FindByIdAsync(id);
+        
+        if (!response.Success)
+            return BadRequest(response.Message);
+        
+        var accountResponse = mapper.Map<Accounts, AccountsSigninResponse>(response.Resource);
+        return Ok(accountResponse);
+    }
+    
     //POST: api/v1/accounts
     //Crear un nuevo usuario
     [HttpPost("sign-in")]
