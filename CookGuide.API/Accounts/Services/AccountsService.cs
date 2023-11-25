@@ -82,6 +82,7 @@ public class AccountsService : IAccountsService
         updateAccount.address = account.address ?? updateAccount.address;
         updateAccount.username = account.username ?? updateAccount.username;
         updateAccount.password = account.password ?? updateAccount.password;
+        updateAccount.profilePicture = account.profilePicture ?? updateAccount.profilePicture;
 
         try
         {
