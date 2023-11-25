@@ -81,7 +81,7 @@ public class RecipesService: IRecipesService
         updateRecipe.name = recipe.name ?? updateRecipe.name;
         updateRecipe.preparationTime = recipe.preparationTime ?? updateRecipe.preparationTime;
         updateRecipe.photoUrl = recipe.photoUrl ?? updateRecipe.photoUrl;
-        
+        updateRecipe.serving_price = recipe.serving_price ?? updateRecipe.serving_price; 
         
         try
         {

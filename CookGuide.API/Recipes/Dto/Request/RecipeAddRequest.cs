@@ -9,6 +9,7 @@ public class RecipeAddRequest
     public int preparationTime {get; set;}
     public string photoUrl { get; set; }
     public int accountId { get; set; }
+    public float serving_price {get; set;}
     public List<IngredientRecipeRequest> ingredients { get; set; }
     
 }

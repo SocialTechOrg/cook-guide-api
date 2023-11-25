@@ -11,6 +11,7 @@ public class Recipes
     public int? preparationTime {get; set;}
     public string photoUrl { get; set; }
     
+    public float? serving_price {get; set;}
     public IList<RecipesIngredients> ingredients { get; set; } = new List<RecipesIngredients>();
     
     public int accountId { get; set; }

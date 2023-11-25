@@ -139,9 +139,13 @@ namespace CookGuide.API.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("photo_url");
 
-                    b.Property<int>("preparationTime")
+                    b.Property<int?>("preparationTime")
                         .HasColumnType("int")
                         .HasColumnName("preparation_time");
+
+                    b.Property<float?>("serving_price")
+                        .HasColumnType("float")
+                        .HasColumnName("serving_price");
 
                     b.HasKey("id")
                         .HasName("pk_recipes");
